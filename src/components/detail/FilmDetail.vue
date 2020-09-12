@@ -39,9 +39,12 @@
         class="flex-column align-items-start"
       >
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">
+          <router-link
+            class="h5 mb-1"
+            :to="`/people/${ppl.id}`"
+          >
             {{ ppl.name }}
-          </h5>
+          </router-link>
           <div>
             <b-badge
               v-if="ppl.species_detail"
@@ -68,62 +71,49 @@
       </b-list-group-item>
     </b-list-group>
 
-    <hr>
-    <h5 class="mb-3">
-      Locations
-    </h5>
-
-    <div v-if="filmLocations.length == 0">
-      <EmptyData />
-    </div>
-
-    <b-card-group>
-      <b-card
-        v-for="loc in filmLocations"
-        :key="loc.id"
-        class="mb-2"
-      >
-        <h5>
-          {{ loc.name }}
-        </h5>
+    <DetailSegment
+      title="Locations"
+      :items="filmLocations"
+    >
+      <template v-slot:default="{item}">
+        <router-link
+          class="h5"
+          :to="`/location/${item.id}`"
+        >
+          {{ item.name }}
+        </router-link>
         <div class="text-muted">
-          {{ loc.terrain }}
+          {{ item.terrain }}
         </div>
-      </b-card>
-    </b-card-group>
+      </template>
+    </DetailSegment>
 
-    <hr>
-    <h5 class="mb-3">
-      Vehicles
-    </h5>
-
-    <div v-if="filmVehicles.length == 0">
-      <EmptyData />
-    </div>
-
-    <b-card-group>
-      <b-card
-        v-for="vcl in filmVehicles"
-        :key="vcl.id"
-        class="mb-2"
-      >
-        <h5>
-          {{ vcl.name }}
-        </h5>
+    <DetailSegment
+      title="Vehicles"
+      :items="filmVehicles"
+    >
+      <template v-slot:default="{item}">
+        <router-link
+          class="h5"
+          :to="`/vehicle/${item.id}`"
+        >
+          {{ item.name }}
+        </router-link>
         <div class="text-muted">
-          {{ vcl.vehicle_class }}
+          {{ item.vehicle_class }}
         </div>
-      </b-card>
-    </b-card-group>
+      </template>
+    </DetailSegment>
   </b-card>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import EmptyData from '../EmptyData.vue';
+import DetailSegment from '../DetailSegment.vue';
 
 export default {
-  components: { EmptyData },
+  components: { EmptyData, DetailSegment },
 
   props: {
     id: {

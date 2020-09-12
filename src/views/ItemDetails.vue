@@ -11,6 +11,14 @@
             v-if="category == 'people'"
             :id="id"
           />
+          <LocationDetail
+            v-if="category == 'location'"
+            :id="id"
+          />
+          <VehicleDetail
+            v-if="category == 'vehicle'"
+            :id="id"
+          />
         </div>
         <div
           v-else
@@ -26,10 +34,14 @@
 <script>
 import FilmDetail from '../components/detail/FilmDetail.vue';
 import PeopleDetail from '../components/detail/PeopleDetail.vue';
+import LocationDetail from '../components/detail/LocationDetail.vue';
+import VehicleDetail from '../components/detail/VehicleDetail.vue';
 
 export default {
   name: 'ItemDetails',
-  components: { FilmDetail, PeopleDetail },
+  components: {
+    FilmDetail, PeopleDetail, LocationDetail, VehicleDetail,
+  },
   computed: {
     id() {
       return this.$route.params.id;

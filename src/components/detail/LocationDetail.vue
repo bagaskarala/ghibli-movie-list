@@ -2,26 +2,39 @@
   <b-card>
     <b-card-title>
       {{ detail.name }}
-      <b-badge
-        v-if="speciesObject"
-        variant="info"
-      >
-        {{ speciesObject.name }}
-      </b-badge>
     </b-card-title>
 
     <b-card-text class="text-muted">
       <p class="mb-0">
-        Gender: {{ detail.gender }}
+        Terrain: {{ detail.terrain }}
       </p>
       <p class="mb-0">
-        Age: {{ detail.age }}
+        Climate: {{ detail.climate }}
+      </p>
+      <p class="mb-0">
+        Surface Water: {{ detail.surface_water }}
       </p>
     </b-card-text>
 
     <DetailSegment
+      title="Residents"
+      :items="locationResidents"
+    >
+      <template v-slot:default="{item}">
+        <router-link
+          v-if="item.name"
+          class="h5"
+          :to="`/people/${item.id}`"
+        >
+          {{ item.name }}
+        </router-link>
+        <span v-else>Not found</span>
+      </template>
+    </DetailSegment>
+
+    <DetailSegment
       title="Film"
-      :items="peopleFilms"
+      :items="locationFilms"
     >
       <template v-slot:default="{item}">
         <router-link
@@ -50,18 +63,19 @@ export default {
   },
 
   computed: {
-    ...mapState(['films', 'people', 'species', 'locations', 'vehicles', 'loading']),
+    ...mapState(['films', 'people', 'locations', 'loading']),
 
     detail() {
       if (this.loading) return {};
-      return this.people.find((item) => item.id === this.id) || {};
+      return this.locations.find((item) => item.id === this.id) || {};
     },
 
-    speciesObject() {
-      return this.species.find((spc) => spc.people && !!spc.people.find((ppl) => ppl.includes(this.id)));
+    locationResidents() {
+      if (!this.detail?.residents?.length) return [];
+      return this.detail.residents.map((peopleUrl) => (this.people.find((ppl) => peopleUrl.includes(ppl.id))) ?? { name: null });
     },
 
-    peopleFilms() {
+    locationFilms() {
       if (!this.detail?.films?.length) return [];
       return this.detail.films.map((filmUrl) => this.films.find((film) => filmUrl.includes(film.id)));
     },
