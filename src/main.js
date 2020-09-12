@@ -1,5 +1,16 @@
 import {
-  NavbarPlugin, LayoutPlugin, FormInputPlugin, CardPlugin, ButtonPlugin, SpinnerPlugin, BootstrapVueIcons, ListGroupPlugin, BadgePlugin, AlertPlugin,
+  BootstrapVueIcons,
+  NavbarPlugin,
+  LayoutPlugin,
+  FormInputPlugin,
+  FormSelectPlugin,
+  CardPlugin,
+  ButtonPlugin,
+  SpinnerPlugin,
+  ListGroupPlugin,
+  BadgePlugin,
+  AlertPlugin,
+  InputGroupPlugin,
 } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -11,7 +22,20 @@ import router from './router';
 import store from './store';
 import './services/api';
 
-const plugins = [NavbarPlugin, LayoutPlugin, FormInputPlugin, CardPlugin, ButtonPlugin, SpinnerPlugin, BootstrapVueIcons, ListGroupPlugin, BadgePlugin, AlertPlugin];
+const plugins = [
+  BootstrapVueIcons,
+  NavbarPlugin,
+  LayoutPlugin,
+  FormInputPlugin,
+  FormSelectPlugin,
+  CardPlugin,
+  ButtonPlugin,
+  SpinnerPlugin,
+  ListGroupPlugin,
+  BadgePlugin,
+  AlertPlugin,
+  InputGroupPlugin,
+];
 plugins.forEach((x) => Vue.use(x));
 
 Vue.config.productionTip = false;

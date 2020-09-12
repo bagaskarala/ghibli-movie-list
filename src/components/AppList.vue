@@ -1,43 +1,51 @@
 <template>
-  <b-card-group columns>
-    <b-card
-      v-for="(item, index) in items"
-      :key="index"
-      tag="article"
-      class="mb-2"
-    >
-      <div v-if="category == 'film'">
-        <b-card-title>
-          <router-link :to="`/film/${item.id}`">
-            {{ `${item.title} (${item.release_date})` }}
-          </router-link>
-        </b-card-title>
-        <div>
-          <b-icon-star-fill variant="warning" />
-          Score: {{ item.rt_score }}
-        </div>
+  <div>
+    <div v-if="items.length == 0">
+      <EmptyData />
+    </div>
 
-        <hr>
+    <b-card-group columns>
+      <b-card
+        v-for="(item, index) in items"
+        :key="index"
+        tag="article"
+        class="mb-3"
+      >
+        <FilmList
+          v-if="category == 'film'"
+          :item="item"
+        />
 
-        <b-card-text>
-          {{ item.description }}
-        </b-card-text>
+        <PeopleList
+          v-if="category == 'people'"
+          :item="item"
+        />
 
-        <b-card-text class="small text-muted">
-          <p class="mb-0">
-            Director: {{ item.director }}
-          </p>
-          <p class="mb-0">
-            Producer: {{ item.producer }}
-          </p>
-        </b-card-text>
-      </div>
-    </b-card>
-  </b-card-group>
+        <LocationList
+          v-if="category == 'location'"
+          :item="item"
+        />
+
+        <VehicleList
+          v-if="category == 'vehicle'"
+          :item="item"
+        />
+      </b-card>
+    </b-card-group>
+  </div>
 </template>
 
 <script>
+import FilmList from './FilmList.vue';
+import PeopleList from './PeopleList.vue';
+import LocationList from './LocationList.vue';
+import VehicleList from './VehicleList.vue';
+import EmptyData from './EmptyData.vue';
+
 export default {
+  components: {
+    FilmList, PeopleList, LocationList, VehicleList, EmptyData,
+  },
   props: {
     items: {
       type: Array,
@@ -50,6 +58,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
