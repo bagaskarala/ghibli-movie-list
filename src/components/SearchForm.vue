@@ -50,6 +50,16 @@ export default {
     searchTerm(term) {
       this.$emit('input', term);
     },
+
+    $route: {
+      deep: true,
+      immediate: true,
+      handler(val, oldVal) {
+        if (!oldVal || (val.query.category !== oldVal.query.category && this.categoryOptions.includes(val.query.category))) {
+          this.changeCategory(val.query.category ?? 'film');
+        }
+      },
+    },
   },
 
   methods: {

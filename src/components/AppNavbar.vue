@@ -1,11 +1,11 @@
-<template>
+<template functional>
   <b-navbar
     type="dark"
     variant="dark"
   >
     <b-container>
       <b-navbar-nav>
-        <b-nav-item to="/">
+        <b-nav-item to="/home">
           Home
         </b-nav-item>
       </b-navbar-nav>

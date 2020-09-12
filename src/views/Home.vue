@@ -69,6 +69,20 @@ export default {
     },
   },
 
+  watch: {
+    category: {
+      immediate: true,
+      handler(val) {
+        this.$router.replace({
+          path: '/home',
+          query: {
+            category: val,
+          },
+        }).catch(() => { });
+      },
+    },
+  },
+
   methods: {
     handleSearch(term) {
       this.searchTerm = term;
