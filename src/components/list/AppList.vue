@@ -40,7 +40,7 @@ import FilmList from './FilmList.vue';
 import PeopleList from './PeopleList.vue';
 import LocationList from './LocationList.vue';
 import VehicleList from './VehicleList.vue';
-import EmptyData from './EmptyData.vue';
+import EmptyData from '../EmptyData.vue';
 
 export default {
   components: {

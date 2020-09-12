@@ -26,7 +26,7 @@
 <script>
 import { mapState } from 'vuex';
 import SearchForm from '../components/SearchForm.vue';
-import AppList from '../components/AppList.vue';
+import AppList from '../components/list/AppList.vue';
 
 export default {
   name: 'Home',

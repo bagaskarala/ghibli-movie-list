@@ -120,7 +120,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import EmptyData from './EmptyData.vue';
+import EmptyData from '../EmptyData.vue';
 
 export default {
   components: { EmptyData },

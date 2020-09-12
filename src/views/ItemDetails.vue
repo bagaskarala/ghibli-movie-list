@@ -7,6 +7,10 @@
             v-if="category == 'film'"
             :id="id"
           />
+          <PeopleDetail
+            v-if="category == 'people'"
+            :id="id"
+          />
         </div>
         <div
           v-else
@@ -20,11 +24,12 @@
 </template>
 
 <script>
-import FilmDetail from '../components/FilmDetail.vue';
+import FilmDetail from '../components/detail/FilmDetail.vue';
+import PeopleDetail from '../components/detail/PeopleDetail.vue';
 
 export default {
   name: 'ItemDetails',
-  components: { FilmDetail },
+  components: { FilmDetail, PeopleDetail },
   computed: {
     id() {
       return this.$route.params.id;
