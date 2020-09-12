@@ -1,32 +1,27 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <AppNavbar />
+    <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions } from 'vuex';
+import AppNavbar from '@/components/AppNavbar.vue';
 
-#nav {
-  padding: 30px;
-}
+export default {
+  components: { AppNavbar },
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  created() {
+    this.getDataByCategory('film');
+    this.getDataByCategory('people');
+    this.getDataByCategory('species');
+    this.getDataByCategory('location');
+    this.getDataByCategory('vehicle');
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  methods: {
+    ...mapActions(['getDataByCategory']),
+  },
+};
+</script>
