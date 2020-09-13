@@ -1,24 +1,17 @@
-# ghibli-movie-list
+# Ghibli Studios
 
-## Project setup
-```
-npm install
-```
+Browse films, characters, locations, & vehicles from Ghibli Studio
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Demo
 
-### Compiles and minifies for production
-```
-npm run build
-```
+https://ghibli-movie-list.vercel.app/
 
-### Lints and fixes files
-```
-npm run lint
-```
+## API
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://github.com/janaipakos/ghibliapi
+
+## Powered by
+- VueJS
+- Vuex
+- Vue Router
+- BootstrapVue
