@@ -3,6 +3,15 @@
     <b-row>
       <b-col>
         <div v-if="!loading">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-3 font-weight-light">
+              {{ category.toUpperCase() }}
+            </h2>
+            <router-link to="/home">
+              <b-icon-arrow90deg-up />
+              Back to Home
+            </router-link>
+          </div>
           <FilmDetail
             v-if="category == 'film'"
             :id="id"

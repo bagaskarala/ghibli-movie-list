@@ -1,17 +1,11 @@
 <template>
-  <div>
-    <AppNavbar />
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import AppNavbar from '@/components/AppNavbar.vue';
 
 export default {
-  components: { AppNavbar },
-
   created() {
     this.getDataByCategory('film');
     this.getDataByCategory('people');

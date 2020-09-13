@@ -46,8 +46,8 @@ export default {
       const term = this.searchTerm.toLowerCase();
 
       if (this.category === 'film') {
-        if (!this.searchTerm) return this.films;
-        return this.films.filter((item) => (item.title.toLowerCase()).includes(term) || (item.director.toLowerCase()).includes(term) || (item.producer.toLowerCase()).includes(term));
+        if (!this.searchTerm) return this.filteredFilms;
+        return this.filteredFilms.filter((item) => (item.title.toLowerCase()).includes(term) || (item.director.toLowerCase()).includes(term) || (item.producer.toLowerCase()).includes(term));
       }
 
       if (this.category === 'people') {
@@ -67,6 +67,13 @@ export default {
 
       return [];
     },
+
+    filteredFilms() {
+      if (this.$route.query.creator) {
+        return this.films.filter((item) => item.director === this.$route.query.creator || item.producer === this.$route.query.creator);
+      }
+      return this.films;
+    },
   },
 
   watch: {
@@ -76,6 +83,7 @@ export default {
         this.$router.replace({
           path: '/home',
           query: {
+            ...this.$route.query,
             category: val,
           },
         }).catch(() => { });

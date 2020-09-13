@@ -12,6 +12,7 @@ export default new Vuex.Store({
     locations: [],
     vehicles: [],
     loading: false,
+    filmCreator: '',
   },
   mutations: {
     setFilms(state, films) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     setLoading(state, bool) {
       state.loading = bool;
+    },
+    setCreator(state, creator) {
+      state.filmCreator = creator;
     },
   },
   actions: {
